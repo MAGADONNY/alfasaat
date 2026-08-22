@@ -1,35 +1,13 @@
 import streamlit as st
 
-# 1. Podešavanje stranice (Uvek na samom vrhu)
+# 1. Podešavanje stranice
 st.set_page_config(
     page_title="ALFASAAT MEDIA DOO",
     page_icon="☀️",
     layout="wide"
 )
 
-# 2. Python trik za garantovanu sivu boju kartica i beli okvir
-st.markdown(
-    """
-    <style>
-    div[data-testid="stVerticalBlock"] > div:has(div[data-testid="element-container"]) {
-        background-color: #2D3139 !important;
-        border: 2px solid #FFFFFF !important;
-        border-radius: 12px !important;
-        padding: 25px !important;
-        margin-bottom: 15px !important;
-    }
-    /* Sprečava da se glavna sekcija i slika uokvire */
-    div[data-testid="stColumn"] > div {
-        background-color: transparent !important;
-        border: none !important;
-        padding: 0px !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# 3. GLAVNA SEKCIJA: Vaš tekst i nova slika sa logoom
+# 2. GLAVNA SEKCIJA: Tekst i slika sa logoom
 kolona_naslov, kolona_slika = st.columns(2, vertical_alignment="center")
 
 with kolona_naslov:
@@ -52,50 +30,74 @@ with kolona_slika:
 
 st.divider()
 
-# 4. SEKCIJA: Tri glavna box-a (Usluge)
+# 3. SEKCIJA: Naše usluge prilagođene mobilnim telefonima (st.expander)
 st.header("⚡ Naše ključne oblasti poslovanja")
-st.write("") 
+st.write("Dodirnite oblast ispod da biste videli detalje i prednosti:")
 
-# Kreiramo 3 kolone za tri odvojena box-a
-box1, box2, box3 = st.columns(3)
-
-# Prvi box: SOLARNI PANELI
-with box1:
-    st.subheader("☀️ SOLARNI PANELI")
+# Prva usluga
+with st.expander("☀️ SOLARNI PANELI", expanded=False):
+    st.write("")
     st.write(
         """
         Kompletna rešenja za energetsku nezavisnost. Projektovanje, 
         montaža i održavanje solarnih elektrana za kuće i firme.
+        
+        * **• Smanjenje računa za struju do 90%**
+        * **• Prelazak na čistu, zelenu energiju**
+        * **• Ugradnja opreme vrhunskog kvaliteta sa garancijom**
         """
     )
-    st.write("**• Smanjenje računa**")
-    st.write("**• Zelena energija**")
-    st.write("**• Vrhunska oprema**")
 
-# Drugi box: ALARMI
-with box2:
-    st.subheader("🚨 ALARMI")
+# Druga usluga
+with st.expander("🚨 ALARMNI SISTEMI", expanded=False):
+    st.write("")
     st.write(
         """
         Najmoderniji protivprovalni sistemi i pametni alarmni uređaji 
         koji trenutno javljaju svaku opasnost direktno na vaš telefon.
+        
+        * **• Trenutna dojava na mobilnu aplikaciju**
+        * **• Bežični i žični senzori pokreta i loma stakla**
+        * **• Pouzdana zaštita objekta 24/7**
         """
     )
-    st.write("**• Dojava na mobilni**")
-    st.write("**• Senzori pokreta**")
-    st.write("**• 24/7 Zaštita**")
 
-# Treći box: VIDEO NADZOR
-with box3:
-    st.subheader("📹 VIDEO NADZOR")
+# Treća usluga
+with st.expander("📹 VIDEO NADZOR", expanded=False):
+    st.write("")
     st.write(
         """
         Profesionalne kamere visoke rezolucije sa pametnom analitikom, 
         prepoznavanjem lica i mogućnošću praćenja uživo sa bilo kog mesta.
+        
+        * **• Kristalno jasna HD i 4K rezolucija slika**
+        * **• Napredno infracrveno i kolor noćno snimanje**
+        * **• Pregled kamera uživo preko telefona ili računara**
         """
     )
-    st.write("**• HD/4K Rezolucija**")
-    st.write("**• Noćno snimanje**")
-    st.write("**• Pregled uživo**")
 
 st.divider()
+
+# 4. SEKCIJA: Kontakt forma na dnu sajta
+st.header("📩 Kontaktirajte nas")
+st.write("Imate pitanje ili želite ponudu? Pišite nam direktno putem forme ispod.")
+
+with st.form("kontakt_forma", clear_on_submit=True):
+    ime = st.text_input("Vaše ime i prezime *")
+    email = st.text_input("Vaša E-mail adresa *")
+    telefon = st.text_input("Vaš broj telefona")
+    
+    usluga = st.selectbox(
+        "Koja usluga vas najviše zanima?",
+        ["Solarni paneli", "Alarmi", "Video nadzor", "Kompletno rešenje (Sve navedeno)"]
+    )
+    
+    poruka = st.text_area("Vaša poruka ili specifični zahtevi *")
+    
+    posalji = st.form_submit_button("Pošalji upit")
+    
+    if posalji:
+        if ime and email and poruka:
+            st.success(f"Hvala Vam, {ime}! Vaš upit za uslugu '{usluga}' je uspešno primljen. Odgovorićemo vam u najkraćem roku.")
+        else:
+            st.error("Molimo vas da popunite obavezna polja (Ime, Email i Poruka).")
