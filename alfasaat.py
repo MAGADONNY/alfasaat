@@ -12,7 +12,7 @@ kolona_naslov, kolona_slika = st.columns(2, vertical_alignment="center")
 
 with kolona_naslov:
     st.title("ALFASAAT MEDIA DOO")
-    st.subheader("Vaš partner za energetsku efikasnost i maksimalnu bezbednost")
+    st.subheader("Vaš partner za energetske efikasnosti i maksimalnu bezbednost")
     st.write(
         """
         Prelazak na solarnu energiju nikada nije bio lakši. Projektujemo i ugrađujemo 
@@ -77,33 +77,31 @@ with b3:
 
 st.divider()
 
-# 4. SEKCIJA: Orijentacioni proračun (Sa suženim poljem za unos računa na PC-u)
+# 4. SEKCIJA: Orijentacioni proračun
 st.header("🧮 Orijentacioni proračun za solarne panele")
 st.write("Unesite vaš prosečan mesečni račun za struju da biste videli optimalnu snagu, cenu investicije i uštedu.")
 
 kolona_kalk_unos, kolona_kalk_rez = st.columns(2, vertical_alignment="center")
 
 with kolona_kalk_unos:
-    # TRIK ZA SUŽAVANJE: Delimo levu stranu na dve pod-kolone (odnos 3:2) da bismo skupili polje za unos
-    k_unos_suzeno, k_prazno = st.columns([3, 2])
+    k_unos_suzeno, k_prazno = st.columns(2)
     
     with k_unos_suzeno:
         racun = st.number_input(
             "Prosečan mesečni račun za struju (u dinarima):", 
             min_value=3000, 
             max_value=150000, 
-            value=7000, # Postavljeno na 7.000 kao na vašoj slici
+            value=7000, 
             step=500,
             key="kalk_racun"
         )
     
-    # Realna inženjerska matematika za Srbiju
     prosecna_cena_kwh = 13.0
     potrosnja_kwh_mesecno = racun / prosecna_cena_kwh
     optimalna_mesecna_proizvodnja = potrosnja_kwh_mesecno * 0.75
     potrebna_snaga_prosek = optimalna_mesecna_proizvodnja / 100
     
-    min_snaga =  potrebna_snaga_prosek * 0.9
+    min_snaga = potrebna_snaga_prosek * 0.9
     max_snaga = potrebna_snaga_prosek * 1.1
     
     cena_po_kw_rsd = 117000
@@ -170,3 +168,14 @@ with f3:
     st.write("Matični broj: XXXXXXXX")
     st.write("PIB: XXXXXXXXX")
     st.write("Sedište: Srbija")
+
+st.divider()
+
+# 7. SEKCIJA: Centrirani brendirani potpis autora (Novi dodatak)
+st.html(
+    """
+    <div style="text-align: center; padding: 15px; color: #888888; font-size: 14px;">
+        Powered by Python | <a href="mailto:magicom@bluewin.ch" style="color: #0066CC; text-decoration: none; font-weight: bold;">MAGICOM & AI</a>
+    </div>
+    """
+)
