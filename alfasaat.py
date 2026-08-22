@@ -30,14 +30,13 @@ with kolona_slika:
 
 st.divider()
 
-# 3. SEKCIJA: Tri ključne oblasti poslovanja (Sa stabilnim vizuelnim razdvajanjem)
+# 3. SEKCIJA: Tri ključne oblasti poslovanja (Pobednička verzija sa slike)
 st.header("⚡ Naše ključne oblasti poslovanja")
 st.write("") 
 
 b1, b2, b3 = st.columns(3)
 
 with b1:
-    # Gornja debela linija napravljena od simbola koja uvek svetli u tamnom modu
     st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
     st.subheader("☀️ SOLARNI PANELI")
     st.caption("Energetska nezavisnost za dom i privredu")
@@ -104,34 +103,38 @@ with kolona_kalk_rez:
         st.metric(label="Preporučena snaga elektrane", value=f"{potrebna_snaga:.1f} kW")
     with metrika2:
         st.metric(label="Orijentaciona godišnja ušteda", value=f"{godisnja_usteda:,} RSD")
-    
-    st.caption("Napomena: Proračun je informativnog karaktera. Za tačnu ponudu i projekat kontaktirajte naš tim.")
+    st.caption("Napomena: Proračun je informativnog karaktera.")
 
 st.divider()
 
-# 5. SEKCIJA: Kontakt forma
+# 5. SEKCIJA: Kontakt forma (Sa suženim poljima na PC-u pomoću tri kolone)
 st.header("📩 Kontaktirajte nas")
 st.write("Imate pitanje ili želite ponudu? Pišite nam direktno putem forme ispod.")
 
-with st.form("kontakt_forma", clear_on_submit=True):
-    ime = st.text_input("Vaše ime i prezime *")
-    email = st.text_input("Vaša E-mail adresa *")
-    telefon = st.text_input("Vaš broj telefona")
-    
-    usluga = st.selectbox(
-        "Koja usluga vas najviše zanima?",
-        ["Solarni paneli", "Alarmi", "Video nadzor", "Kompletno rešenje (Sve navedeno)"]
-    )
-    
-    poruka = st.text_area("Vaša poruka ili specifični zahtevi *")
-    
-    posalji = st.form_submit_button("Pošalji upit")
-    
-    if posalji:
-        if ime and email and poruka:
-            st.success(f"Hvala Vam, {ime}! Vaš upit za uslugu '{usluga}' je uspešno primljen. Odgovorićemo vam u najkraćem roku.")
-        else:
-            st.error("Molimo vas da popunite obavezna polja (Ime, Email i Poruka).")
+# Trik: Pravimo odnos kolona 1:2:1. Sadržaj ide u srednju kolonu koja je 50% širine ekrana.
+# Na mobilnim uređajima, Streamlit će ovu srednju kolonu raširiti na 100%, pa forma ostaje idealna i na telefonu!
+k_levo, k_sredina, k_desno = st.columns([1, 2, 1])
+
+with k_sredina:
+    with st.form("kontakt_forma", clear_on_submit=True):
+        ime = st.text_input("Vaše ime i prezime *")
+        email = st.text_input("Vaša E-mail adresa *")
+        telefon = st.text_input("Vaš broj telefona")
+        
+        usluga = st.selectbox(
+            "Koja usluga vas najviše zanima?",
+            ["Solarni paneli", "Alarmi", "Video nadzor", "Kompletno rešenje (Sve navedeno)"]
+        )
+        
+        poruka = st.text_area("Vaša poruka ili specifični zahtevi *")
+        
+        posalji = st.form_submit_button("Pošalji upit")
+        
+        if posalji:
+            if ime and email and poruka:
+                st.success(f"Hvala Vam, {ime}! Vaš upit je uspešno primljen. Odgovorićemo vam u najkraćem roku.")
+            else:
+                st.error("Molimo vas da popunite obavezna polja (Ime, Email i Poruka).")
 
 st.divider()
 
