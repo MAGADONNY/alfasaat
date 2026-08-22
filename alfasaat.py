@@ -121,23 +121,33 @@ with kolona_kalk_rez:
 
 st.divider()
 
-# 5. SEKCIJA: Kontakt forma
+# 5. SEKCIJA: Kontakt forma (Kompaktna verzija sa paralelnim poljima)
 st.header("📩 Kontaktirajte nas")
 st.write("Imate pitanje ili želite ponudu? Pišite nam direktno putem forme ispod.")
 
-k_levo, k_sredina, k_desno = st.columns(3)
+# Drži formu u centralnih 60% ekrana na PC-u
+k_levo, k_sredina, k_desno = st.columns([0.3, 1.4, 0.3])
 
 with k_sredina:
     with st.form("kontakt_forma", clear_on_submit=True):
-        ime = st.text_input("Vaše ime i prezime *")
-        email = st.text_input("Vaša E-mail adresa *")
-        telefon = st.text_input("Vaš broj telefona")
-        
-        usluga = st.selectbox(
-            "Koja usluga vas najviše zanima?",
-            ["Solarni paneli", "Alarmi", "Video nadzor", "Kompletno rešenje (Sve navedeno)"]
-        )
-        
+        # RED 1: Ime i Email paralelno
+        r1_levo, r1_desno = st.columns(2)
+        with r1_levo:
+            ime = st.text_input("Vaše ime i prezime *")
+        with r1_desno:
+            email = st.text_input("Vaša E-mail adresa *")
+            
+        # RED 2: Telefon i Izbor usluge paralelno
+        r2_levo, r2_desno = st.columns(2)
+        with r2_levo:
+            telefon = st.text_input("Vaš broj telefona")
+        with r2_desno:
+            usluga = st.selectbox(
+                "Koja usluga vas najviše zanima?",
+                ["Solarni paneli", "Alarmi", "Video nadzor", "Kompletno rešenje (Sve navedeno)"]
+            )
+            
+        # RED 3: Poruka (Preko celog središnjeg bloka)
         poruka = st.text_area("Vaša poruka ili specifični zahtevi *")
         
         posalji = st.form_submit_button("Pošalji upit")
@@ -148,8 +158,7 @@ with k_sredina:
             else:
                 st.error("Molimo vas da popunite obavezna polja (Ime, Email i Poruka).")
 
-# 🛠️ SVETLIJA LINIJA ODVAJANJA (Čist tekstualni simbol preko celog ekrana)
-st.write("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+st.divider()
 
 # 6. SEKCIJA: Podnožje sajta (Footer) sa pravnim podacima
 f1, f2, f3 = st.columns(3)
@@ -170,8 +179,9 @@ with f3:
     st.write("PIB: XXXXXXXXX")
     st.write("Sedište: Srbija")
 
-# 7. SEKCIJA: Brendirani potpis autora (Čist Python sa standardnim linkom)
-# Koristimo st.columns(3) i centralnu kolonu da bismo centrirali potpis
-p_levo, p_sredina, p_desno = st.columns([1.2, 1, 1])
+st.divider()
+
+# 7. SEKCIJA: Centrirani brendirani potpis autora (Čist Python)
+p_levo, p_sredina, p_desno = st.columns([1.3, 1, 1])
 with p_sredina:
     st.write("Powered by Python | [MAGICOM & AI](mailto:magicom@bluewin.ch)")
