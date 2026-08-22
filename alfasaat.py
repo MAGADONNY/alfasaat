@@ -1,10 +1,24 @@
 import streamlit as st
 
-# 1. Podešavanje stranice (Ovo uvek mora biti na samom vrhu)
+# 1. Podešavanje stranice
 st.set_page_config(
     page_title="ALFASAAT MEDIA DOO",
     page_icon="☀️",
     layout="wide"
+)
+
+# Integrisanje zvaničnog stila za sive kartice sa belim okvirom
+st.html(
+    """
+    <style>
+    [data-testid="stMetricValue"], [data-testid="stVerticalBlock"] > div[data-testid="stBlock"] {
+        background-color: #2D3139 !important;
+        border: 1px solid #FFFFFF !important;
+        border-radius: 8px !important;
+        padding: 20px !important;
+    }
+    </style>
+    """
 )
 
 # 2. GLAVNA "HERO" SEKCIJA: Slika i tekst jedno pored drugog
@@ -31,7 +45,7 @@ with kolona_slika:
 st.divider()
 
 # 3. Sekcija: Tri glavna box-a (Usluge)
-st.write("") # Prazan prostor za bolji vizuelni razmak
+st.write("") 
 st.header("⚡ Naše ključne oblasti poslovanja")
 
 # Kreiramo 3 kolone za tri box-a
@@ -39,7 +53,7 @@ box1, box2, box3 = st.columns(3)
 
 # Prvi box: SOLARNI PANELI
 with box1:
-    with st.container(border=True):
+    with st.container():
         st.subheader("☀️ SOLARNI PANELI")
         st.write(
             """
@@ -53,7 +67,7 @@ with box1:
 
 # Drugi box: ALARMI
 with box2:
-    with st.container(border=True):
+    with st.container():
         st.subheader("🚨 ALARMI")
         st.write(
             """
@@ -67,7 +81,7 @@ with box2:
 
 # Treći box: VIDEO NADZOR
 with box3:
-    with st.container(border=True):
+    with st.container():
         st.subheader("📹 VIDEO NADZOR")
         st.write(
             """
