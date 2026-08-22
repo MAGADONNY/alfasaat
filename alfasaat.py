@@ -73,7 +73,7 @@ with b3:
         """
     )
     st.info("✓ Kristalno jasna 4K slika\n\n✓ Napredno noćno snimanje\n\n✓ Pregled uživo preko aplikacije")
-    st.markdown("### ---")
+    st.markdown("### ")
 
 st.divider()
 
