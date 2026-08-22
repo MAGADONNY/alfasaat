@@ -60,10 +60,10 @@ with b2:
         """
     )
     st.info("✓ Trenutna dojava na telefon\n\n✓ Bežični senzori pokreta\n\n✓ Potpuna kontrola pristupa")
-    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    st.markdown("### ---")
 
 with b3:
-    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    st.markdown("### ---")
     st.subheader("🛡️ VIDEO (CCTV) NADZOR")
     st.caption("Profesionalna kontrola sa bilo kog mesta")
     st.write(
@@ -73,7 +73,7 @@ with b3:
         """
     )
     st.info("✓ Kristalno jasna 4K slika\n\n✓ Napredno noćno snimanje\n\n✓ Pregled uživo preko aplikacije")
-    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    st.markdown("### ---")
 
 st.divider()
 
