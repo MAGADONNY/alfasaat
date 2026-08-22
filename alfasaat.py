@@ -77,7 +77,7 @@ with b3:
 
 st.divider()
 
-# 4. SEKCIJA: Pametni Kalkulator Uštede (Ažurirana inženjerska matematika)
+# 4. SEKCIJA: Pametni Kalkulator Uštede
 st.header("🧮 Izračunajte uštedu za solarne panele")
 st.write("Unesite vaš prosečan mesečni račun za struju i saznajte okvirnu snagu sistema koja vam je potrebna.")
 
@@ -93,18 +93,17 @@ with kolona_kalk_unos:
         key="kalk_racun"
     )
     
-    # Realnija matematika prilagođena zonama u Srbiji
+    # Korigovana matematika sa zaokruživanjem decimanih mesta
     prosecna_cena_kwh = 13.0
     potrosnja_kwh_mesecno = racun / prosecna_cena_kwh
     optimalna_mesecna_proizvodnja = potrosnja_kwh_mesecno * 0.75
     potrebna_snaga_prosek = optimalna_mesecna_proizvodnja / 100
     
-    # Računanje realnog opsega snage sistema
     min_snaga = potrebna_snaga_prosek * 0.9
     max_snaga = potrebna_snaga_prosek * 1.1
     
-    # Godišnja ušteda optimizovana na 70% pokrića računa (zbog fiksnih EPS troškova)
-    godisnja_usteda = (racun * 12) * 0.70
+    # f-string formatiranje i funkcija int() uklanjaju dosadne decimale (.999999)
+    godisnja_usteda = int((racun * 12) * 0.70)
 
 with kolona_kalk_rez:
     metrika1, metrika2 = st.columns(2)
@@ -116,11 +115,12 @@ with kolona_kalk_rez:
 
 st.divider()
 
-# 5. SEKCIJA: Kontakt forma
+# 5. SEKCIJA: Kontakt forma (Sa fiksiranim st.columns(3) brojačem)
 st.header("📩 Kontaktirajte nas")
 st.write("Imate pitanje ili želite ponudu? Pišite nam direktno putem forme ispod.")
 
-k_levo, k_sredina, k_desno = st.columns()
+# Dodat broj 3 unutar zagrade da se spreči pad aplikacije
+k_levo, k_sredina, k_desno = st.columns(3)
 
 with k_sredina:
     with st.form("kontakt_forma", clear_on_submit=True):
@@ -133,13 +133,7 @@ with k_sredina:
             ["Solarni paneli", "Alarmi", "Video nadzor", "Kompletno rešenje (Sve navedeno)"]
         )
         
-        # Automatizovana poruka na osnovu kalkulatora
-        podaci_iz_kalkulatora = f"Zanimaju me solarni paneli. Moj mesečni račun je oko {racun} RSD, a kalkulator je procenio sistem od {min_snaga:.1f} - {max_snaga:.1f} kW."
-        
-        poruka = st.text_area(
-            "Vaša poruka ili specifični zahtevi *",
-            value=podaci_iz_kalkulatora if usluga == "Solarni paneli" else ""
-        )
+        poruka = st.text_area("Vaša poruka ili specifični zahtevi *")
         
         posalji = st.form_submit_button("Pošalji upit")
         
