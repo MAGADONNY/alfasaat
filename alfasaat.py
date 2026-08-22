@@ -121,12 +121,11 @@ with kolona_kalk_rez:
 
 st.divider()
 
-# 5. SEKCIJA: Kontakt forma (Uravnotežen odnos za PC ekrane bez prelamanja teksta)
+# 5. SEKCIJA: Kontakt forma (Upeglana horizontalna simetrija i kraća poruka)
 st.header("📩 Kontaktirajte nas")
 st.write("Imate pitanje ili želite ponudu? Pišite nam direktno putem forme ispod.")
 
-# Odnos kolona 1:1:1 omogućava savršenu širinu središnjeg dela na PC-u bez gužvanja teksta
-k_levo, k_sredina, k_desno = st.columns([1, 1, 1])
+k_levo, k_sredina, k_desno = st.columns(3)
 
 with k_sredina:
     with st.form("kontakt_forma", clear_on_submit=True):
@@ -140,12 +139,14 @@ with k_sredina:
         with r2_levo:
             telefon = st.text_input("Vaš broj telefona")
         with r2_desno:
+            # Tekst skraćen na "Usluga *" radi idealnog horizontalnog poravnanja polja
             usluga = st.selectbox(
-                "Koja usluga vas najviše zanima?",
+                "Usluga *",
                 ["Solarni paneli", "Alarmi", "Video nadzor", "Kompletno rešenje (Sve navedeno)"]
             )
             
-        poruka = st.text_area("Vaša poruka ili specifični zahtevi *", height=100)
+        # height=70 dodatno smanjuje visinu kutije za poruku na elegantna 2-3 reda
+        poruka = st.text_area("Vaša poruka ili specifični zahtevi *", height=70)
         
         posalji = st.form_submit_button("Pošalji upit")
         
