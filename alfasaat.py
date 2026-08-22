@@ -167,15 +167,15 @@ with f1:
 
 with f2:
     st.write("**📍 Kontakt podaci:**")
-    st.write("📱 Telefon: +381 XX XXX XXX")
-    st.write("📧 E-mail: info@alfasaat.com")
+    st.write("📱 Telefon: +381 607040110")
+    st.write("📧 E-mail: tolant1111@yahoo.com")
     st.write("🕒 Radno vreme: Pon - Pet: 08:00 - 16:00")
 
 with f3:
     st.write("**📄 Pravne informacije:**")
     st.write("Matični broj: XXXXXXXX")
     st.write("PIB: XXXXXXXXX")
-    st.write("Sedište: Srbija")
+    st.write("Sedište: Kralja Petra I Br.104, Sremska Mitrovica")
 
 st.divider()
 
