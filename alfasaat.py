@@ -46,7 +46,7 @@ with b1:
         vrhunska montaža i dugogodišnje održavanje solarnih elektrana.
         """
     )
-    st.info("✓ Smanjenje računa do 30%\n\n✓ Najkvalitetniji paneli\n\n✓ Brza otplata investicije")
+    st.info("✓ Smanjenje računa \n\n✓ Najkvalitetniji paneli\n\n✓ Brza otplata investicije")
     st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
 with b2:
