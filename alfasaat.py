@@ -148,7 +148,8 @@ with k_sredina:
             else:
                 st.error("Molimo vas da popunite obavezna polja (Ime, Email i Poruka).")
 
-st.divider()
+# 🛠️ SVETLIJA LINIJA ODVAJANJA (Čist tekstualni simbol preko celog ekrana)
+st.write("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
 # 6. SEKCIJA: Podnožje sajta (Footer) sa pravnim podacima
 f1, f2, f3 = st.columns(3)
@@ -169,13 +170,8 @@ with f3:
     st.write("PIB: XXXXXXXXX")
     st.write("Sedište: Srbija")
 
-st.divider()
-
-# 7. SEKCIJA: Centrirani brendirani potpis autora (Novi dodatak)
-st.html(
-    """
-    <div style="text-align: center; padding: 15px; color: #888888; font-size: 14px;">
-        Powered by Python | <a href="mailto:magicom@bluewin.ch" style="color: #0066CC; text-decoration: none; font-weight: bold;">MAGICOM & AI</a>
-    </div>
-    """
-)
+# 7. SEKCIJA: Brendirani potpis autora (Čist Python sa standardnim linkom)
+# Koristimo st.columns(3) i centralnu kolonu da bismo centrirali potpis
+p_levo, p_sredina, p_desno = st.columns([1.2, 1, 1])
+with p_sredina:
+    st.write("Powered by Python | [MAGICOM & AI](mailto:magicom@bluewin.ch)")
