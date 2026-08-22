@@ -30,7 +30,7 @@ with kolona_slika:
 
 st.divider()
 
-# 3. SEKCIJA: Tri ključne oblasti poslovanja (Pobednička verzija sa slike)
+# 3. SEKCIJA: Tri ključne oblasti poslovanja
 st.header("⚡ Naše ključne oblasti poslovanja")
 st.write("") 
 
@@ -46,7 +46,7 @@ with b1:
         vrhunska montaža i dugogodišnje održavanje solarnih elektrana.
         """
     )
-    st.info("✓ Smanjenje računa \n\n✓ Najkvalitetniji paneli\n\n✓ Brza otplata investicije")
+    st.info("✓ SMANJENJE RAČUNA\n\n✓ Najkvalitetniji paneli\n\n✓ Brza otplata investicije")
     st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
 with b2:
@@ -64,7 +64,7 @@ with b2:
 
 with b3:
     st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
-    st.subheader("🛡️ VIDEO NADZOR")
+    st.subheader("🛡️ VIDEO (CCTV) NADZOR")
     st.caption("Profesionalna kontrola sa bilo kog mesta")
     st.write(
         """
@@ -77,7 +77,7 @@ with b3:
 
 st.divider()
 
-# 4. SEKCIJA: Pametni Kalkulator Uštede
+# 4. SEKCIJA: Pametni Kalkulator Uštede (Ažurirana inženjerska matematika)
 st.header("🧮 Izračunajte uštedu za solarne panele")
 st.write("Unesite vaš prosečan mesečni račun za struju i saznajte okvirnu snagu sistema koja vam je potrebna.")
 
@@ -92,28 +92,35 @@ with kolona_kalk_unos:
         step=500,
         key="kalk_racun"
     )
-    cena_kwh = 14  
-    potrosnja_kwh = racun / cena_kwh
-    potrebna_snaga = potrosnja_kwh / 105  
-    godisnja_usteda = racun * 12
+    
+    # Realnija matematika prilagođena zonama u Srbiji
+    prosecna_cena_kwh = 13.0
+    potrosnja_kwh_mesecno = racun / prosecna_cena_kwh
+    optimalna_mesecna_proizvodnja = potrosnja_kwh_mesecno * 0.75
+    potrebna_snaga_prosek = optimalna_mesecna_proizvodnja / 100
+    
+    # Računanje realnog opsega snage sistema
+    min_snaga = potrebna_snaga_prosek * 0.9
+    max_snaga = potrebna_snaga_prosek * 1.1
+    
+    # Godišnja ušteda optimizovana na 70% pokrića računa (zbog fiksnih EPS troškova)
+    godisnja_usteda = (racun * 12) * 0.70
 
 with kolona_kalk_rez:
     metrika1, metrika2 = st.columns(2)
     with metrika1:
-        st.metric(label="Preporučena snaga elektrane", value=f"{potrebna_snaga:.1f} kW")
+        st.metric(label="Preporučena snaga elektrane", value=f"{min_snaga:.1f} - {max_snaga:.1f} kW")
     with metrika2:
         st.metric(label="Orijentaciona godišnja ušteda", value=f"{godisnja_usteda:,} RSD")
-    st.caption("Napomena: Proračun je informativnog karaktera.")
+    st.caption("Napomena: Proračun je konfigurisan za optimalnu pokrivenost potrošnje domaćinstva u višoj tarifi.")
 
 st.divider()
 
-# 5. SEKCIJA: Kontakt forma (Sa suženim poljima na PC-u pomoću tri kolone)
+# 5. SEKCIJA: Kontakt forma
 st.header("📩 Kontaktirajte nas")
 st.write("Imate pitanje ili želite ponudu? Pišite nam direktno putem forme ispod.")
 
-# Trik: Pravimo odnos kolona 1:2:1. Sadržaj ide u srednju kolonu koja je 50% širine ekrana.
-# Na mobilnim uređajima, Streamlit će ovu srednju kolonu raširiti na 100%, pa forma ostaje idealna i na telefonu!
-k_levo, k_sredina, k_desno = st.columns([1, 2, 1])
+k_levo, k_sredina, k_desno = st.columns()
 
 with k_sredina:
     with st.form("kontakt_forma", clear_on_submit=True):
@@ -126,7 +133,13 @@ with k_sredina:
             ["Solarni paneli", "Alarmi", "Video nadzor", "Kompletno rešenje (Sve navedeno)"]
         )
         
-        poruka = st.text_area("Vaša poruka ili specifični zahtevi *")
+        # Automatizovana poruka na osnovu kalkulatora
+        podaci_iz_kalkulatora = f"Zanimaju me solarni paneli. Moj mesečni račun je oko {racun} RSD, a kalkulator je procenio sistem od {min_snaga:.1f} - {max_snaga:.1f} kW."
+        
+        poruka = st.text_area(
+            "Vaša poruka ili specifični zahtevi *",
+            value=podaci_iz_kalkulatora if usluga == "Solarni paneli" else ""
+        )
         
         posalji = st.form_submit_button("Pošalji upit")
         
