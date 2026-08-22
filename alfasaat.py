@@ -73,7 +73,7 @@ with b3:
         """
     )
     st.info("✓ Kristalno jasna 4K slika\n\n✓ Napredno noćno snimanje\n\n✓ Pregled uživo preko aplikacije")
-    st.markdown("### ▬▬▬▬▬▬▬▬ционной ▬▬")
+    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
 st.divider()
 
@@ -121,12 +121,12 @@ with kolona_kalk_rez:
 
 st.divider()
 
-# 5. SEKCIJA: Kontakt forma (Maksimalno sužena na PC-u čistim asimetričnim Python kolonama)
+# 5. SEKCIJA: Kontakt forma (Uravnotežen odnos za PC ekrane bez prelamanja teksta)
 st.header("📩 Kontaktirajte nas")
 st.write("Imate pitanje ili želite ponudu? Pišite nam direktno putem forme ispod.")
 
-# Bočne kolone su duplo proširene (na 1.2), a središnja za formu je dodatno sužena (na 0.6)
-k_levo, k_sredina, k_desno = st.columns([1.2, 0.6, 1.2])
+# Odnos kolona 1:1:1 omogućava savršenu širinu središnjeg dela na PC-u bez gužvanja teksta
+k_levo, k_sredina, k_desno = st.columns([1, 1, 1])
 
 with k_sredina:
     with st.form("kontakt_forma", clear_on_submit=True):
@@ -145,7 +145,6 @@ with k_sredina:
                 ["Solarni paneli", "Alarmi", "Video nadzor", "Kompletno rešenje (Sve navedeno)"]
             )
             
-        # height=100 u čistom Pythonu smanjuje preveliko fabričko polje na elegantnih 4 reda visine
         poruka = st.text_area("Vaša poruka ili specifični zahtevi *", height=100)
         
         posalji = st.form_submit_button("Pošalji upit")
