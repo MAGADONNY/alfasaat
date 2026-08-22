@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# 2. GLAVNA SEKCIJA: Tekst i slika sa logoom
+# 2. GLAVNA SEKCIJA: Vaš tekst i slika sa logoom
 kolona_naslov, kolona_slika = st.columns(2, vertical_alignment="center")
 
 with kolona_naslov:
@@ -30,55 +30,86 @@ with kolona_slika:
 
 st.divider()
 
-# 3. SEKCIJA: Naše usluge prilagođene mobilnim telefonima (st.expander)
+# 3. SEKCIJA: Tri ključne oblasti poslovanja (Sa stabilnim vizuelnim razdvajanjem)
 st.header("⚡ Naše ključne oblasti poslovanja")
-st.write("Dodirnite oblast ispod da biste videli detalje i prednosti:")
+st.write("") 
 
-# Prva usluga
-with st.expander("☀️ SOLARNI PANELI", expanded=False):
-    st.write("")
+b1, b2, b3 = st.columns(3)
+
+with b1:
+    # Gornja debela linija napravljena od simbola koja uvek svetli u tamnom modu
+    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    st.subheader("☀️ SOLARNI PANELI")
+    st.caption("Energetska nezavisnost za dom i privredu")
     st.write(
         """
-        Kompletna rešenja za energetsku nezavisnost. Projektovanje, 
-        montaža i održavanje solarnih elektrana za kuće i firme.
-        
-        * **• Smanjenje računa za struju do 90%**
-        * **• Prelazak na čistu, zelenu energiju**
-        * **• Ugradnja opreme vrhunskog kvaliteta sa garancijom**
+        Kompletna rešenja po sistemu ključ u ruke. Projektovanje, 
+        vrhunska montaža i dugogodišnje održavanje solarnih elektrana.
         """
     )
+    st.info("✓ Smanjenje računa do 90%\n\n✓ Najkvalitetniji paneli\n\n✓ Brza otplata investicije")
+    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
-# Druga usluga
-with st.expander("🚨 ALARMNI SISTEMI", expanded=False):
-    st.write("")
+with b2:
+    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    st.subheader("🚨 ALARMNI SISTEMI")
+    st.caption("Pametna zaštita imovine 24/7")
     st.write(
         """
         Najmoderniji protivprovalni sistemi i pametni alarmni uređaji 
-        koji trenutno javljaju svaku opasnost direktno na vaš telefon.
-        
-        * **• Trenutna dojava na mobilnu aplikaciju**
-        * **• Bežični i žični senzori pokreta i loma stakla**
-        * **• Pouzdana zaštita objekta 24/7**
+        koji trenutno javljaju svaku opasnost i pokušaj upada.
         """
     )
+    st.info("✓ Trenutna dojava na telefon\n\n✓ Bežični senzori pokreta\n\n✓ Potpuna kontrola pristupa")
+    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
-# Treća usluga
-with st.expander("📹 VIDEO NADZOR", expanded=False):
-    st.write("")
+with b3:
+    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    st.subheader("📹 VIDEO NADZOR")
+    st.caption("Profesionalna kontrola sa bilo kog mesta")
     st.write(
         """
-        Profesionalne kamere visoke rezolucije sa pametnom analitikom, 
-        prepoznavanjem lica i mogućnošću praćenja uživo sa bilo kog mesta.
-        
-        * **• Kristalno jasna HD i 4K rezolucija slika**
-        * **• Napredno infracrveno i kolor noćno snimanje**
-        * **• Pregled kamera uživo preko telefona ili računara**
+        Kamere visoke rezolucije sa pametnom analitikom, 
+        prepoznavanjem lica i mogućnošću praćenja u realnom vremenu.
         """
     )
+    st.info("✓ Kristalno jasna 4K slika\n\n✓ Napredno noćno snimanje\n\n✓ Pregled uživo preko aplikacije")
+    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
 st.divider()
 
-# 4. SEKCIJA: Kontakt forma na dnu sajta
+# 4. SEKCIJA: Pametni Kalkulator Uštede
+st.header("🧮 Izračunajte uštedu za solarne panele")
+st.write("Unesite vaš prosečan mesečni račun za struju i saznajte okvirnu snagu sistema koja vam je potrebna.")
+
+kolona_kalk_unos, kolona_kalk_rez = st.columns(2, vertical_alignment="center")
+
+with kolona_kalk_unos:
+    racun = st.number_input(
+        "Prosečan mesečni račun za struju (u dinarima):", 
+        min_value=3000, 
+        max_value=150000, 
+        value=9000, 
+        step=500,
+        key="kalk_racun"
+    )
+    cena_kwh = 14  
+    potrosnja_kwh = racun / cena_kwh
+    potrebna_snaga = potrosnja_kwh / 105  
+    godisnja_usteda = racun * 12
+
+with kolona_kalk_rez:
+    metrika1, metrika2 = st.columns(2)
+    with metrika1:
+        st.metric(label="Preporučena snaga elektrane", value=f"{potrebna_snaga:.1f} kW")
+    with metrika2:
+        st.metric(label="Orijentaciona godišnja ušteda", value=f"{godisnja_usteda:,} RSD")
+    
+    st.caption("Napomena: Proračun je informativnog karaktera. Za tačnu ponudu i projekat kontaktirajte naš tim.")
+
+st.divider()
+
+# 5. SEKCIJA: Kontakt forma
 st.header("📩 Kontaktirajte nas")
 st.write("Imate pitanje ili želite ponudu? Pišite nam direktno putem forme ispod.")
 
@@ -101,3 +132,24 @@ with st.form("kontakt_forma", clear_on_submit=True):
             st.success(f"Hvala Vam, {ime}! Vaš upit za uslugu '{usluga}' je uspešno primljen. Odgovorićemo vam u najkraćem roku.")
         else:
             st.error("Molimo vas da popunite obavezna polja (Ime, Email i Poruka).")
+
+st.divider()
+
+# 6. SEKCIJA: Podnožje sajta (Footer) sa pravnim podacima
+f1, f2, f3 = st.columns(3)
+
+with f1:
+    st.subheader("ALFASAAT MEDIA DOO")
+    st.caption("Pouzdan partner za bezbednost i zelenu energiju.")
+
+with f2:
+    st.write("**📍 Kontakt podaci:**")
+    st.write("📱 Telefon: +381 XX XXX XXX")
+    st.write("📧 E-mail: info@alfasaat.com")
+    st.write("🕒 Radno vreme: Pon - Pet: 08:00 - 16:00")
+
+with f3:
+    st.write("**📄 Pravne informacije:**")
+    st.write("Matični broj: XXXXXXXX")
+    st.write("PIB: XXXXXXXXX")
+    st.write("Sedište: Srbija")
