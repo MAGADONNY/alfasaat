@@ -77,9 +77,9 @@ with b3:
 
 st.divider()
 
-# 4. SEKCIJA: Pametni Kalkulator Uštede
-st.header("🧮 Izračunajte uštedu za solarne panele")
-st.write("Unesite vaš prosečan mesečni račun za struju i saznajte okvirnu snagu sistema koja vam je potrebna.")
+# 4. SEKCIJA: Pametni Kalkulator Uštede i Investicije (Korigovan font i matematika)
+st.header("🧮 Orijentacioni proračun za solarne panele")
+st.write("Unesite vaš prosečan mesečni račun za struju da biste videli optimalnu snagu, cenu investicije i uštedu.")
 
 kolona_kalk_unos, kolona_kalk_rez = st.columns(2, vertical_alignment="center")
 
@@ -93,7 +93,7 @@ with kolona_kalk_unos:
         key="kalk_racun"
     )
     
-    # Korigovana matematika sa zaokruživanjem decimanih mesta
+    # Realna inženjerska matematika za Srbiju
     prosecna_cena_kwh = 13.0
     potrosnja_kwh_mesecno = racun / prosecna_cena_kwh
     optimalna_mesecna_proizvodnja = potrosnja_kwh_mesecno * 0.75
@@ -102,24 +102,32 @@ with kolona_kalk_unos:
     min_snaga = potrebna_snaga_prosek * 0.9
     max_snaga = potrebna_snaga_prosek * 1.1
     
-    # f-string formatiranje i funkcija int() uklanjaju dosadne decimale (.999999)
+    # Proračun investicije (Uprošćeno: ~1000 EUR po kW sistema sa montažom i papirima u RSD)
+    cena_po_kw_rsd = 117000
+    prosecna_snaga_za_investiciju = (min_snaga + max_snaga) / 2
+    okvirna_investicija = int(prosecna_snaga_za_investiciju * cena_po_kw_rsd)
+    
+    # Realna godišnja ušteda (Smanjeno na 70% ukupnog godišnjeg računa zbog fiksnih stavki EPS-a)
     godisnja_usteda = int((racun * 12) * 0.70)
 
 with kolona_kalk_rez:
-    metrika1, metrika2 = st.columns(2)
-    with metrika1:
-        st.metric(label="Preporučena snaga elektrane", value=f"{min_snaga:.1f} - {max_snaga:.1f} kW")
-    with metrika2:
-        st.metric(label="Orijentaciona godišnja ušteda", value=f"{godisnja_usteda:,} RSD")
-    st.caption("Napomena: Proračun je konfigurisan za optimalnu pokrivenost potrošnje domaćinstva u višoj tarifi.")
+    # Umesto st.metric koji pravi ogromne fontove, koristimo čist podrazumevani tekst (Boldovano)
+    st.write(f"📋 **Preporučena snaga elektrane:** {min_snaga:.1f} - {max_snaga:.1f} kW")
+    st.write(f"💰 **Orijentaciona cena investicije (ključ u ruke):** oko **{okvirna_investicija:,} RSD**")
+    st.write(f"📉 **Procenjena godišnja ušteda na računu:** oko **{godisnja_usteda:,} RSD**")
+    
+    # Kratka računica otplate za klijenta
+    period_otplate = okvirna_investicija / godisnja_usteda
+    st.write(f"⏳ **Period otplate investicije:** cca **{period_otplate:.1f} godina** (nakon toga elektrana donosi čist profit)")
+    
+    st.caption("Napomena: Proračun je informativnog karaktera. Tačna cena zavisi od tehničkih uslova na krovu i odabira opreme.")
 
 st.divider()
 
-# 5. SEKCIJA: Kontakt forma (Sa fiksiranim st.columns(3) brojačem)
+# 5. SEKCIJA: Kontakt forma
 st.header("📩 Kontaktirajte nas")
 st.write("Imate pitanje ili želite ponudu? Pišite nam direktno putem forme ispod.")
 
-# Dodat broj 3 unutar zagrade da se spreči pad aplikacije
 k_levo, k_sredina, k_desno = st.columns(3)
 
 with k_sredina:
