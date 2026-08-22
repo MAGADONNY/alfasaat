@@ -12,7 +12,7 @@ kolona_naslov, kolona_slika = st.columns(2, vertical_alignment="center")
 
 with kolona_naslov:
     st.title("ALFASAAT MEDIA DOO")
-    st.subheader("Vaš partner za energetske efikasnosti i maksimalnu bezbednost")
+    st.subheader("Vaš partner za energetsku efikasnost i maksimalnu bezbednost")
     st.write(
         """
         Prelazak na solarnu energiju nikada nije bio lakši. Projektujemo i ugrađujemo 
@@ -73,7 +73,7 @@ with b3:
         """
     )
     st.info("✓ Kristalno jasna 4K slika\n\n✓ Napredno noćno snimanje\n\n✓ Pregled uživo preko aplikacije")
-    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    st.markdown("### ▬▬▬▬▬▬▬▬ционной ▬▬")
 
 st.divider()
 
@@ -121,23 +121,21 @@ with kolona_kalk_rez:
 
 st.divider()
 
-# 5. SEKCIJA: Kontakt forma (Kompaktna verzija sa paralelnim poljima)
+# 5. SEKCIJA: Kontakt forma (Maksimalno sužena na PC-u čistim asimetričnim Python kolonama)
 st.header("📩 Kontaktirajte nas")
 st.write("Imate pitanje ili želite ponudu? Pišite nam direktno putem forme ispod.")
 
-# Drži formu u centralnih 60% ekrana na PC-u
-k_levo, k_sredina, k_desno = st.columns([0.3, 1.4, 0.3])
+# Bočne kolone su duplo proširene (na 1.2), a središnja za formu je dodatno sužena (na 0.6)
+k_levo, k_sredina, k_desno = st.columns([1.2, 0.6, 1.2])
 
 with k_sredina:
     with st.form("kontakt_forma", clear_on_submit=True):
-        # RED 1: Ime i Email paralelno
         r1_levo, r1_desno = st.columns(2)
         with r1_levo:
             ime = st.text_input("Vaše ime i prezime *")
         with r1_desno:
             email = st.text_input("Vaša E-mail adresa *")
             
-        # RED 2: Telefon i Izbor usluge paralelno
         r2_levo, r2_desno = st.columns(2)
         with r2_levo:
             telefon = st.text_input("Vaš broj telefona")
@@ -147,8 +145,8 @@ with k_sredina:
                 ["Solarni paneli", "Alarmi", "Video nadzor", "Kompletno rešenje (Sve navedeno)"]
             )
             
-        # RED 3: Poruka (Preko celog središnjeg bloka)
-        poruka = st.text_area("Vaša poruka ili specifični zahtevi *")
+        # height=100 u čistom Pythonu smanjuje preveliko fabričko polje na elegantnih 4 reda visine
+        poruka = st.text_area("Vaša poruka ili specifični zahtevi *", height=100)
         
         posalji = st.form_submit_button("Pošalji upit")
         
@@ -181,7 +179,7 @@ with f3:
 
 st.divider()
 
-# 7. SEKCIJA: Centrirani brendirani potpis autora (Čist Python)
+# 7. SEKCIJA: Centrirani brendirani potpis autora
 p_levo, p_sredina, p_desno = st.columns([1.3, 1, 1])
 with p_sredina:
     st.write("Powered by Python | [MAGICOM & AI](mailto:magicom@bluewin.ch)")
