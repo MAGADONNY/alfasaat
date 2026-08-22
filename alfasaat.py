@@ -77,21 +77,25 @@ with b3:
 
 st.divider()
 
-# 4. SEKCIJA: Pametni Kalkulator Uštede i Investicije (Korigovan font i matematika)
+# 4. SEKCIJA: Orijentacioni proračun (Sa suženim poljem za unos računa na PC-u)
 st.header("🧮 Orijentacioni proračun za solarne panele")
 st.write("Unesite vaš prosečan mesečni račun za struju da biste videli optimalnu snagu, cenu investicije i uštedu.")
 
 kolona_kalk_unos, kolona_kalk_rez = st.columns(2, vertical_alignment="center")
 
 with kolona_kalk_unos:
-    racun = st.number_input(
-        "Prosečan mesečni račun za struju (u dinarima):", 
-        min_value=3000, 
-        max_value=150000, 
-        value=9000, 
-        step=500,
-        key="kalk_racun"
-    )
+    # TRIK ZA SUŽAVANJE: Delimo levu stranu na dve pod-kolone (odnos 3:2) da bismo skupili polje za unos
+    k_unos_suzeno, k_prazno = st.columns([3, 2])
+    
+    with k_unos_suzeno:
+        racun = st.number_input(
+            "Prosečan mesečni račun za struju (u dinarima):", 
+            min_value=3000, 
+            max_value=150000, 
+            value=7000, # Postavljeno na 7.000 kao na vašoj slici
+            step=500,
+            key="kalk_racun"
+        )
     
     # Realna inženjerska matematika za Srbiju
     prosecna_cena_kwh = 13.0
@@ -99,24 +103,19 @@ with kolona_kalk_unos:
     optimalna_mesecna_proizvodnja = potrosnja_kwh_mesecno * 0.75
     potrebna_snaga_prosek = optimalna_mesecna_proizvodnja / 100
     
-    min_snaga = potrebna_snaga_prosek * 0.9
+    min_snaga =  potrebna_snaga_prosek * 0.9
     max_snaga = potrebna_snaga_prosek * 1.1
     
-    # Proračun investicije (Uprošćeno: ~1000 EUR po kW sistema sa montažom i papirima u RSD)
     cena_po_kw_rsd = 117000
     prosecna_snaga_za_investiciju = (min_snaga + max_snaga) / 2
     okvirna_investicija = int(prosecna_snaga_za_investiciju * cena_po_kw_rsd)
-    
-    # Realna godišnja ušteda (Smanjeno na 70% ukupnog godišnjeg računa zbog fiksnih stavki EPS-a)
     godisnja_usteda = int((racun * 12) * 0.70)
 
 with kolona_kalk_rez:
-    # Umesto st.metric koji pravi ogromne fontove, koristimo čist podrazumevani tekst (Boldovano)
     st.write(f"📋 **Preporučena snaga elektrane:** {min_snaga:.1f} - {max_snaga:.1f} kW")
     st.write(f"💰 **Orijentaciona cena investicije (ključ u ruke):** oko **{okvirna_investicija:,} RSD**")
     st.write(f"📉 **Procenjena godišnja ušteda na računu:** oko **{godisnja_usteda:,} RSD**")
     
-    # Kratka računica otplate za klijenta
     period_otplate = okvirna_investicija / godisnja_usteda
     st.write(f"⏳ **Period otplate investicije:** cca **{period_otplate:.1f} godina** (nakon toga elektrana donosi čist profit)")
     
