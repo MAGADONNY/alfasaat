@@ -46,7 +46,7 @@ with b1:
         vrhunska montaža i dugogodišnje održavanje solarnih elektrana.
         """
     )
-    st.info("✓ Smanjenje računa do 90%\n\n✓ Najkvalitetniji paneli\n\n✓ Brza otplata investicije")
+    st.info("✓ Smanjenje računa do 30%\n\n✓ Najkvalitetniji paneli\n\n✓ Brza otplata investicije")
     st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
 
 with b2:
@@ -64,7 +64,7 @@ with b2:
 
 with b3:
     st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
-    st.subheader("📹 VIDEO NADZOR")
+    st.subheader("🛡️ VIDEO NADZOR")
     st.caption("Profesionalna kontrola sa bilo kog mesta")
     st.write(
         """
