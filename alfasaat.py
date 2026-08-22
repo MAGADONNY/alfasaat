@@ -37,7 +37,7 @@ st.write("")
 b1, b2, b3 = st.columns(3)
 
 with b1:
-    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    st.markdown("### ---")
     st.subheader("☀️ SOLARNI PANELI")
     st.caption("Energetska nezavisnost za dom i privredu")
     st.write(
@@ -47,10 +47,10 @@ with b1:
         """
     )
     st.info("✓ SMANJENJE RAČUNA\n\n✓ Najkvalitetniji paneli\n\n✓ Brza otplata investicije")
-    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    st.markdown("### ---")
 
 with b2:
-    st.markdown("### ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    st.markdown("### ---")
     st.subheader("🚨 ALARMNI SISTEMI")
     st.caption("Pametna zaštita imovine 24/7")
     st.write(
