@@ -1,3 +1,35 @@
+import streamlit as st
+
+# 1. Podešavanje stranice (Ovo uvek mora biti na samom vrhu)
+st.set_page_config(
+    page_title="ALFASAAT MEDIA DOO",
+    page_icon="☀️",
+    layout="wide"
+)
+
+# 2. GLAVNA "HERO" SEKCIJA: Slika i tekst jedno pored drugog
+kolona_naslov, kolona_slika = st.columns(2, vertical_alignment="center")
+
+with kolona_naslov:
+    st.title("ALFASAAT MEDIA DOO")
+    st.subheader("Vaš partner za energetsku efikasnost i maksimalnu bezbednost")
+    st.write(
+        """
+        Prelazak na solarnu energiju nikada nije bio lakši. Projektujemo i ugrađujemo 
+        solarne sisteme vrhunskog kvaliteta i obezbeđujemo vaš prostor najmodernijim 
+        video nadzorom i alarmima.
+        """
+    )
+    st.button("Saznajte više o nama", key="hero_saznaj_vise")
+
+with kolona_slika:
+    try:
+        st.image("solarni_paneli.jpg", use_container_width=True)
+    except:
+        st.info("Prikažite vašu novu sliku ovde.")
+
+st.divider()
+
 # 3. Sekcija: Tri glavna box-a (Usluge)
 st.write("") # Prazan prostor za bolji vizuelni razmak
 st.header("⚡ Naše ključne oblasti poslovanja")
